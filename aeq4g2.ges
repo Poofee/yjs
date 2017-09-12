@@ -1,0 +1,54 @@
+aeq4g2
+defi
+disp az,
+var az1 az2 az3 az4
+refc rx,ry,
+coor x,y,
+func = curlazx,curlazy,
+dord 1,
+node 4
+$cc double sigma,epsilon,fmu,fjz;
+mate sigma epsilon fmu fjz 5.96e7 8.8541878e-12 12.56637e-7 0.0
+ 
+shap
+az=
+az1 = (1.-rx)/2*(1.-ry)/2
+az2 = (1.+rx)/2*(1.-ry)/2
+az3 = (1.+rx)/2*(1.+ry)/2
+az4 = (1.-rx)/2*(1.+ry)/2
+ 
+tran
+x=
+x(1) = (1.-rx)/2*(1.-ry)/2
+x(2) = (1.+rx)/2*(1.-ry)/2
+x(3) = (1.+rx)/2*(1.+ry)/2
+x(4) = (1.-rx)/2*(1.+ry)/2
+ 
+y=
+y(1) = (1.-rx)/2*(1.-ry)/2
+y(2) = (1.+rx)/2*(1.-ry)/2
+y(3) = (1.+rx)/2*(1.+ry)/2
+y(4) = (1.-rx)/2*(1.+ry)/2
+ 
+gaus = 4
+ 5.773502692e-001  5.773502692e-001  1.000000000e+000
+ 5.773502692e-001 -5.773502692e-001  1.000000000e+000
+-5.773502692e-001  5.773502692e-001  1.000000000e+000
+-5.773502692e-001 -5.773502692e-001  1.000000000e+000
+ 
+func
+$cc vol = 1.0;
+curlazx=+[az/y]
+
+curlazy=-[az/x]
+
+
+stif
+dist=+[curlazx;curlazx]*vol/fmu+[curlazy;curlazy]*vol/fmu
+
+
+ 
+load=+[az]*vol*fjz
+
+ 
+end

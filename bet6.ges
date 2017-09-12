@@ -1,0 +1,92 @@
+bet6
+defi
+disp hx,hy,
+var hx1 hy1 hx2 hy2 hx3 hy3 hx4 hy4 hx5 hy5
+var hx6 hy6
+refc rx,ry,
+coor x,y,
+coef az,
+dord 1,1,
+node 6
+$cc double fmu,curlazx,curlazy;
+mate fmu 12.56637e-7
+ 
+shap
+hx=
+hx1=rx*(2.*rx-1.)
+hx4=rx*ry*4.
+hx2=ry*(2.*ry-1.)
+hx5=ry*(1.-rx-ry)*4.
+hx3=(1.-2.*rx-2.*ry)*(1.-rx-ry)
+hx6=rx*(1.-rx-ry)*4.
+ 
+hy=
+hy1=rx*(2.*rx-1.)
+hy4=rx*ry*4.
+hy2=ry*(2.*ry-1.)
+hy5=ry*(1.-rx-ry)*4.
+hy3=(1.-2.*rx-2.*ry)*(1.-rx-ry)
+hy6=rx*(1.-rx-ry)*4.
+ 
+tran
+x=
+x(1)=rx*(2.*rx-1.)
+x(4)=rx*ry*4.
+x(2)=ry*(2.*ry-1.)
+x(5)=ry*(1.-rx-ry)*4.
+x(3)=(1.-2.*rx-2.*ry)*(1.-rx-ry)
+x(6)=rx*(1.-rx-ry)*4.
+ 
+y=
+y(1)=rx*(2.*rx-1.)
+y(4)=rx*ry*4.
+y(2)=ry*(2.*ry-1.)
+y(5)=ry*(1.-rx-ry)*4.
+y(3)=(1.-2.*rx-2.*ry)*(1.-rx-ry)
+y(6)=rx*(1.-rx-ry)*4.
+ 
+coef
+az=
+az(1)=rx*(2.*rx-1.)
+az(4)=rx*ry*4.
+az(2)=ry*(2.*ry-1.)
+az(5)=ry*(1.-rx-ry)*4.
+az(3)=(1.-2.*rx-2.*ry)*(1.-rx-ry)
+az(6)=rx*(1.-rx-ry)*4.
+ 
+gaus =  6
+      1.  0.  0.125/3.
+      0.5 0.5 0.125
+      0.  1.  0.125/3.
+      0.  0.5 0.125
+      0.  0.  0.125/3.
+      0.5 0.  0.125
+ 
+
+stif
+$cc vol = 1.0;
+$cv curlazx=+{az/y}
+$cv curlazy=-{az/x}
+dist=+[hx;hx]*0.0
+
+ 
+mass
+lump =
+ [vol]hx1
++[vol]hx2
++[vol]hx3
++[vol]hx4
++[vol]hx5
++[vol]hx6
+ [vol]hy1
++[vol]hy2
++[vol]hy3
++[vol]hy4
++[vol]hy5
++[vol]hy6
+ 
+load=+[hx]*vol/fmu*curlazx+[hy]*vol/fmu*curlazy
+
+
+ 
+end

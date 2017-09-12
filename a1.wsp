@@ -1,0 +1,79 @@
+WSP_file
+ a1.wsp getwsp a1
+
+Modeling_description
+ a1.html
+
+Physical_field_description
+ a1.gcn gcn a1
+ a1.mdi mdi a1 
+
+Main_program
+ felac.h
+ a1.c nmake
+Physical_field
+
+ Field_a
+  Equation_description
+   mfxy.FDE FDE mfxy
+   mfxy.VDE VDE mfxy
+   mfxy.PDE callbat ggesglt
+    aeq4g2.GES ges aeq4g2
+    aeq4g2.c nmake
+    aet3g2.GES ges aet3g2
+    aet3g2.c nmake
+    aeq9g3.GES ges aeq9g3
+    aeq9g3.c nmake
+    aet6.GES ges aet6
+    aet6.c nmake
+
+  Algorithm_description
+   ell.sch
+   a1a.NFE
+    ea1a.c nmake
+    epgsub.c nmake
+    ua1a.c callbat gcnbat
+
+  Start
+   starta.c nmake
+
+  C_Subroutine
+
+ Field_b
+  Equation_description
+   fmfxy.FDE FDE fmfxy
+   fmfxy.VDE VDE fmfxy
+   fmfxy.PDE callbat ggesglt
+    beq4g2.GES ges beq4g2
+    beq4g2.c nmake
+    bet3g2.GES ges bet3g2
+    bet3g2.c nmake
+    beq9g3.GES ges beq9g3
+    beq9g3.c nmake
+    bet6.GES ges bet6
+    bet6.c nmake
+
+  Algorithm_description
+   str.sch
+   a1b.NFE
+    ea1b.c nmake
+    epgsub.c nmake
+
+  Start
+   startb.c nmake
+
+  C_Subroutine
+
+Matedata
+ a1.pre gidpre a1
+
+Time_update
+ time0
+
+Preprocess
+ gidpre.c nmake
+
+Postprocess
+ a1.pos
+ gidres.c nmake
+ gidmsh.c nmake

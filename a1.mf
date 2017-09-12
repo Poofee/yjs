@@ -1,0 +1,6 @@
+C:\ECTEC\FELAC2.2\mflib\emf\2d\magnetic
+class convention
+coordinate xy
+static les mf c fmf n
+elemtype q4 t3 q9 t6
+boundary

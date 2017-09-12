@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2D Static Magnetic Field</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="C:\ECTEC\FELAC2.2/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+</head>
+<body>
+<blockquote>
+<h1>二维静磁场</h1>
+<p>本章回顾一下二维静态磁场的 Maxwell 方程，引入磁矢势来导出二阶偏微分方程，
+由此推出关于磁矢势场的虚功方程(弱形式)，运用线性稳态的椭圆算法求解。最后用最小
+二乘和集中矩阵算法求出需要求解的磁场。</p>
+<!------------------------------------------------------------------------>
+<hr>
+<h2>二维静态磁场 Maxwell's 方程组微分形式</h2>
+<p>
+在静止的情况下，磁场与电场无关，Maxwell 方程组的磁场部分为
+\[ \nabla  \times \mathbf{H} = \mathbf{J}_s  \hspace{1cm}(1),\] 
+\[ \nabla  \cdot \mathbf{B} = 0  \hspace{1cm}(2),\] </p>
+
+<p>其中 \(\mathbf{H}\)—磁场强度；\(\mathbf{J}_s\)—源电流密度。
+(1)式表示源电流密度 \(\mathbf{J}_s\) 是电磁场 \(\mathbf{H}\) 的源，
+(2)式表示静磁磁通密度的无旋性。而 \(\mathbf{B} = \mu \mathbf{H} \)。</p>
+
+<h2>虚功方程的推导</h2>
+<p>在实际计算当中，引入磁矢势的概念来进行求解，
+由(2)可令\[\mathbf{B} = \nabla \times \mathbf{A} \hspace{1cm}(3),\]
+因为在二维问题中，磁矢势只有一个分量 \(\mathbf{A}_z\)，带入(1)式可得</p>
+
+<p>\[ \nabla \times \frac{1}{\mu} \nabla \times \mathbf{A}_z = \mathbf{J}_s \hspace{1cm}(4),\]</p>
+
+<p>该式的虚功方程为</p>
+
+<p>\[ \big( \frac{1}{\mu} \nabla \times \mathbf{A}_z , \nabla \times \delta\mathbf{A}_z \big)_{\Omega} 
+= \big( \mathbf{J}_s , \delta\mathbf{A}_z \big)_{\Omega} 
+- \big( \mathbf{n}\times \mathbf{H},\delta \mathbf{A}_z \big)_{\Gamma} \hspace{1cm}(5),\]</p>
+
+<p>其中 \((\mathbf{a},\mathbf{b})_K := \int_K \mathbf{a}\mathbf{b}dK\)，
+\(\mathbf{n}\) 表示区域边界 \(\Gamma\) 上外法向单位向量，\(\Omega\) 是求解区域。</p>
+
+<p>按照此虚功方程空间离散化得到线性化方程组 [S][A]=[F]，首先求解出 \(\mathbf{A}_z\)。</p>
+
+<h2>最小二乘法求磁场</h2>
+
+<p>由(3)式生成虚功方程 
+\[\big( \mathbf{H}, \delta \mathbf{H} \big)_{\Omega}
+= \big( \frac{1}{\mu} \nabla \times \mathbf{A}_z, \delta \mathbf{H} \big)_{\Omega} \hspace{1cm}(6)\]
+空间离散化后，运用最小二乘法求出磁场 \( \mathbf{H} \)。</p>
+
+<h2>备注</h2>
+
+<p>在推导虚功方程的过程中我们利用了辅助场磁矢势 \( \mathbf{A}_z \)，
+因此需要按照(5)式编写磁矢势 \( \mathbf{A}_z \) 的 fde, vde 或 pde 文件，和边界 fbc 文件，
+再按照(6)式编写求磁场 \(\mathbf{H}\) 的 fde, vde 或 pde 文件。</p>
+
+</blockquote>
+
+</body>
+</html>

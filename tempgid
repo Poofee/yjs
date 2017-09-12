@@ -1,0 +1,10 @@
+2 1 2 1 1
+Result "a1a1" "Load Analysis" 1 Scalar OnNodes              
+ComponentNames "az"                                         
+Result "a1b" "Load Analysis" 1 Vector OnNodes               
+ComponentNames "hx" "hy"                                    
+Mesh "aeq4g2" Dimension 2 Elemtype Quadrilateral Nnode 4
+Mesh "aet3g2" Dimension 2 Elemtype Triangle Nnode 3
+Mesh "aeq9g3" Dimension 2 Elemtype Quadrilateral Nnode 9
+Mesh "aet6" Dimension 2 Elemtype Triangle Nnode 6
+#

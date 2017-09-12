@@ -1,0 +1,75 @@
+beq4g2
+defi
+disp hx,hy,
+var hx1 hy1 hx2 hy2 hx3 hy3 hx4 hy4
+refc rx,ry,
+coor x,y,
+coef az,
+dord 1,1,
+node 4
+$cc double fmu,curlazx,curlazy;
+mate fmu 12.56637e-7
+ 
+shap
+hx=
+hx1 = (1.-rx)/2*(1.-ry)/2
+hx2 = (1.+rx)/2*(1.-ry)/2
+hx3 = (1.+rx)/2*(1.+ry)/2
+hx4 = (1.-rx)/2*(1.+ry)/2
+ 
+hy=
+hy1 = (1.-rx)/2*(1.-ry)/2
+hy2 = (1.+rx)/2*(1.-ry)/2
+hy3 = (1.+rx)/2*(1.+ry)/2
+hy4 = (1.-rx)/2*(1.+ry)/2
+ 
+tran
+x=
+x(1) = (1.-rx)/2*(1.-ry)/2
+x(2) = (1.+rx)/2*(1.-ry)/2
+x(3) = (1.+rx)/2*(1.+ry)/2
+x(4) = (1.-rx)/2*(1.+ry)/2
+ 
+y=
+y(1) = (1.-rx)/2*(1.-ry)/2
+y(2) = (1.+rx)/2*(1.-ry)/2
+y(3) = (1.+rx)/2*(1.+ry)/2
+y(4) = (1.-rx)/2*(1.+ry)/2
+ 
+coef
+az=
+az(1) = (1.-rx)/2*(1.-ry)/2
+az(2) = (1.+rx)/2*(1.-ry)/2
+az(3) = (1.+rx)/2*(1.+ry)/2
+az(4) = (1.-rx)/2*(1.+ry)/2
+ 
+gaus = 4
+ 5.773502692e-001  5.773502692e-001  1.000000000e+000
+ 5.773502692e-001 -5.773502692e-001  1.000000000e+000
+-5.773502692e-001  5.773502692e-001  1.000000000e+000
+-5.773502692e-001 -5.773502692e-001  1.000000000e+000
+ 
+
+stif
+$cc vol = 1.0;
+$cv curlazx=+{az/y}
+$cv curlazy=-{az/x}
+dist=+[hx;hx]*0.0
+
+ 
+mass
+lump =
+ [ vol]hx1
++[ vol]hx2
++[ vol]hx3
++[ vol]hx4
+ [ vol]hy1
++[ vol]hy2
++[ vol]hy3
++[ vol]hy4
+ 
+load=+[hx]*vol/fmu*curlazx+[hy]*vol/fmu*curlazy
+
+
+ 
+end

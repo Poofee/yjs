@@ -1,0 +1,4 @@
+Result "a1a1" "Load Analysis" 1 Scalar OnNodes
+ComponentNames "az"
+Result "a1b" "Load Analysis" 1 Vector OnNodes
+ComponentNames "hx" "hy"

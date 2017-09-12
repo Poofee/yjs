@@ -1,0 +1,9 @@
+defi
+a ell
+b str a
+ 
+START a a
+START b b
+SOLVc a a
+SOLVSTR b b
+gidres(coor0);

@@ -1,0 +1,27 @@
+defi
+stif s
+mass m
+load f
+type e
+mdty l
+ 
+coef a1
+
+equation
+var a1
+read(s,unoda) a1
+l,mass = [m]
+forc = [f]
+ 
+solution w
+vect w
+$cc if (init == 0) init = 1;
+$cc // ´æ´¢Çó½âµÄw
+write(s,unodb) w
+ 
+@nbde
+ ntype = nbdetype;
+ 
+ 
+end
+ 

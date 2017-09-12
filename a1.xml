@@ -1,0 +1,108 @@
+<?xml version ="1.0" encoding="utf-8"?>
+
+<wspDocument>
+
+ <WSP_file>
+  <wsp name="a1.xml" action="getxml a1"/>
+ </WSP_file>
+
+ <Modeling_description>
+  <html name="a1.html"/>
+ </Modeling_description>
+
+ <Physical_field_description>
+  <gcn name="a1.gcn" action="gcn a1"/>
+  <mdi name="a1.mdi" action="mdi a1"/>
+ </Physical_field_description>
+
+ <Main_program>
+  <h name="felac.h"/>
+  <c name="a1.c" action="nmake"/>
+ </Main_program>
+
+ <Physical_field>
+
+  <Field_a>
+
+   <Equation_description>
+    <FDE name="mfxy.FDE" action="FDE mfxy"/>
+    <VDE name="mfxy.VDE" action="VDE mfxy"/>
+    <PDE name="mfxy.PDE" action="callbat ggesglt">
+     <ges name="aeq4g2.GES" action="ges aeq4g2"/>
+     <c name="aeq4g2.c" action="nmake"/>
+     <ges name="aet3g2.GES" action="ges aet3g2"/>
+     <c name="aet3g2.c" action="nmake"/>
+     <ges name="aeq9g3.GES" action="ges aeq9g3"/>
+     <c name="aeq9g3.c" action="nmake"/>
+     <ges name="aet6.GES" action="ges aet6"/>
+     <c name="aet6.c" action="nmake"/>
+    </PDE>
+   </Equation_description>
+
+   <Algorithm_description>
+    <sch name="ell.sch"/>
+    <NFE name="a1a.NFE">
+     <e name="ea1a.c" action="nmake"/>
+     <c name="epgsub.c" action="nmake"/>
+     <u name="ua1a.c" action="callbat gcnbat"/>
+    </NFE>
+   </Algorithm_description>
+
+   <Start>
+    <c name="starta.c" action="nmake"/>
+   </Start>
+
+  </Field_a>
+
+  <Field_b>
+
+   <Equation_description>
+    <FDE name="fmfxy.FDE" action="FDE fmfxy"/>
+    <VDE name="fmfxy.VDE" action="VDE fmfxy"/>
+    <PDE name="fmfxy.PDE" action="callbat ggesglt">
+     <ges name="beq4g2.GES" action="ges beq4g2"/>
+     <c name="beq4g2.c" action="nmake"/>
+     <ges name="bet3g2.GES" action="ges bet3g2"/>
+     <c name="bet3g2.c" action="nmake"/>
+     <ges name="beq9g3.GES" action="ges beq9g3"/>
+     <c name="beq9g3.c" action="nmake"/>
+     <ges name="bet6.GES" action="ges bet6"/>
+     <c name="bet6.c" action="nmake"/>
+    </PDE>
+   </Equation_description>
+
+   <Algorithm_description>
+    <sch name="str.sch"/>
+    <NFE name="a1b.NFE">
+     <e name="ea1b.c" action="nmake"/>
+     <c name="epgsub.c" action="nmake"/>
+    </NFE>
+   </Algorithm_description>
+
+   <Start>
+    <c name="startb.c" action="nmake"/>
+   </Start>
+
+  </Field_b>
+
+ </Physical_field>
+
+  <Matedata>
+   <pre name="a1.pre" action="gidpre a1"/>
+  </Matedata>
+
+  <Time_update>
+   <time0 name="time0"/>
+  </Time_update>
+
+ <Preprocess>
+   <gidpre name="gidpre.c" action="nmake"/>
+ </Preprocess>
+
+ <Postprocess>
+   <pos name="a1.pos"/>
+   <res name="gidres.c" action="nmake"/>
+   <msh name="gidmsh.c" action="nmake"/>
+ </Postprocess>
+
+</wspDocument>

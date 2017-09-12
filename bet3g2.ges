@@ -1,0 +1,67 @@
+bet3g2
+defi
+disp hx,hy,
+var hx1 hy1 hx2 hy2 hx3 hy3
+refc rx,ry,
+coor x,y,
+coef az,
+dord 1,1,
+node 3
+$cc double fmu,curlazx,curlazy;
+mate fmu 12.56637e-7
+ 
+shap
+hx=
+hx1=rx
+hx2=ry
+hx3=(1.-rx-ry)
+ 
+hy=
+hy1=rx
+hy2=ry
+hy3=(1.-rx-ry)
+ 
+tran
+x=
+x(1)=rx
+x(2)=ry
+x(3)=(1.-rx-ry)
+ 
+y=
+y(1)=rx
+y(2)=ry
+y(3)=(1.-rx-ry)
+ 
+coef
+az=
+az(1)=rx
+az(2)=ry
+az(3)=(1.-rx-ry)
+ 
+gaus = 3
+2./3. 1./6. 1./6.
+1./6. 1./6. 1./6.
+1./6. 2./3. 1./6.
+ 
+
+stif
+$cc vol = 1.0;
+$cv curlazx=+{az/y}
+$cv curlazy=-{az/x}
+dist=+[hx;hx]*0.0
+
+ 
+mass
+lump =
+ [vol]hx1
++[vol]hx2
++[vol]hx3
+ [vol]hy1
++[vol]hy2
++[vol]hy3
+ 
+load=+[hx]*vol/fmu*curlazx+[hy]*vol/fmu*curlazy
+
+
+ 
+end

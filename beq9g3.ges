@@ -1,0 +1,116 @@
+beq9g3
+defi
+disp hx,hy,
+var hx1 hy1 hx2 hy2 hx3 hy3 hx4 hy4 hx5 hy5
+var hx6 hy6 hx7 hy7 hx8 hy8 hx9 hy9
+refc rx,ry,
+coor x,y,
+coef az,
+dord 1,1,
+node 9
+$cc double fmu,curlazx,curlazy;
+mate fmu 12.56637e-7
+ 
+shap
+hx=
+hx1 = rx*(rx-1.)/2*ry*(ry-1.)/2
+hx5 = (1.-rx*rx)*ry*(ry-1.)/2
+hx2 = rx*(1.+rx)/2*ry*(ry-1.)/2
+hx8 = rx*(rx-1.)/2*(1.-ry*ry)
+hx9 = (1.-rx*rx)*(1.-ry*ry)
+hx6 = rx*(1.+rx)/2*(1.-ry*ry)
+hx4 = rx*(rx-1.)/2*ry*(1.+ry)/2
+hx7 = (1.-rx*rx)*ry*(1.+ry)/2
+hx3 = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+hy=
+hy1 = rx*(rx-1.)/2*ry*(ry-1.)/2
+hy5 = (1.-rx*rx)*ry*(ry-1.)/2
+hy2 = rx*(1.+rx)/2*ry*(ry-1.)/2
+hy8 = rx*(rx-1.)/2*(1.-ry*ry)
+hy9 = (1.-rx*rx)*(1.-ry*ry)
+hy6 = rx*(1.+rx)/2*(1.-ry*ry)
+hy4 = rx*(rx-1.)/2*ry*(1.+ry)/2
+hy7 = (1.-rx*rx)*ry*(1.+ry)/2
+hy3 = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+tran
+x=
+x(1) = rx*(rx-1.)/2*ry*(ry-1.)/2
+x(5) = (1.-rx*rx)*ry*(ry-1.)/2
+x(2) = rx*(1.+rx)/2*ry*(ry-1.)/2
+x(8) = rx*(rx-1.)/2*(1.-ry*ry)
+x(9) = (1.-rx*rx)*(1.-ry*ry)
+x(6) = rx*(1.+rx)/2*(1.-ry*ry)
+x(4) = rx*(rx-1.)/2*ry*(1.+ry)/2
+x(7) = (1.-rx*rx)*ry*(1.+ry)/2
+x(3) = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+y=
+y(1) = rx*(rx-1.)/2*ry*(ry-1.)/2
+y(5) = (1.-rx*rx)*ry*(ry-1.)/2
+y(2) = rx*(1.+rx)/2*ry*(ry-1.)/2
+y(8) = rx*(rx-1.)/2*(1.-ry*ry)
+y(9) = (1.-rx*rx)*(1.-ry*ry)
+y(6) = rx*(1.+rx)/2*(1.-ry*ry)
+y(4) = rx*(rx-1.)/2*ry*(1.+ry)/2
+y(7) = (1.-rx*rx)*ry*(1.+ry)/2
+y(3) = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+coef
+az=
+az(1) = rx*(rx-1.)/2*ry*(ry-1.)/2
+az(5) = (1.-rx*rx)*ry*(ry-1.)/2
+az(2) = rx*(1.+rx)/2*ry*(ry-1.)/2
+az(8) = rx*(rx-1.)/2*(1.-ry*ry)
+az(9) = (1.-rx*rx)*(1.-ry*ry)
+az(6) = rx*(1.+rx)/2*(1.-ry*ry)
+az(4) = rx*(rx-1.)/2*ry*(1.+ry)/2
+az(7) = (1.-rx*rx)*ry*(1.+ry)/2
+az(3) = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+gaus = 9
+ 7.745966692e-001  7.745966692e-001  3.086419753e-001
+ 7.745966692e-001  0.000000000e+000  4.938271605e-001
+ 7.745966692e-001 -7.745966692e-001  3.086419753e-001
+ 0.000000000e+000  7.745966692e-001  4.938271605e-001
+ 0.000000000e+000  0.000000000e+000  7.901234568e-001
+ 0.000000000e+000 -7.745966692e-001  4.938271605e-001
+-7.745966692e-001  7.745966692e-001  3.086419753e-001
+-7.745966692e-001  0.000000000e+000  4.938271605e-001
+-7.745966692e-001 -7.745966692e-001  3.086419753e-001
+ 
+
+stif
+$cc vol = 1.0;
+$cv curlazx=+{az/y}
+$cv curlazy=-{az/x}
+dist=+[hx;hx]*0.0
+
+ 
+mass
+lump =
+ [vol]hx1
++[vol]hx2
++[vol]hx3
++[vol]hx4
++[vol]hx5
++[vol]hx6
++[vol]hx7
++[vol]hx8
++[vol]hx9
+ [vol]hy1
++[vol]hy2
++[vol]hy3
++[vol]hy4
++[vol]hy5
++[vol]hy6
++[vol]hy7
++[vol]hy8
++[vol]hy9
+ 
+load=+[hx]*vol/fmu*curlazx+[hy]*vol/fmu*curlazy
+
+
+ 
+end

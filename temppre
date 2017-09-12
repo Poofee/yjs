@@ -1,0 +1,36 @@
+2dxy 2 2 8 10
+a1a 0 4 4 az
+a1b 0 4 1 hx hy
+#
+element y
+a1a
+aeq4g2 4 sigma epsilon fmu fjz
+aet3g2 3 sigma epsilon fmu fjz
+aeq9g3 9 sigma epsilon fmu fjz
+aet6 6 sigma epsilon fmu fjz
+#
+a1b
+beq4g2 4 fmu
+bet3g2 3 fmu
+beq9g3 9 fmu
+bet6 6 fmu
+#
+matedata
+1 a1a aeq4g2
+ 5.96e7 8.8541878e-12 12.56637e-7 0.0
+2 a1a aet3g2
+ 5.96e7 8.8541878e-12 12.56637e-7 0.0
+3 a1a aeq9g3
+ 5.96e7 8.8541878e-12 12.56637e-7 0.0
+4 a1a aet6
+ 5.96e7 8.8541878e-12 12.56637e-7 0.0
+5 a1b beq4g2
+ 12.56637e-7
+6 a1b bet3g2
+ 12.56637e-7
+7 a1b beq9g3
+ 12.56637e-7
+8 a1b bet6
+ 12.56637e-7
+#
+ 

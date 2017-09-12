@@ -1,0 +1,17 @@
+defi
+stif s
+load f
+type e
+mdty l
+init 0
+ 
+equation
+matrix = [s]
+forc = [f]
+ 
+solution u
+vect u
+$cc // ´æ´¢Çó½âµÄu
+write(s,unoda) u
+ 
+end

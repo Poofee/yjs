@@ -1,0 +1,74 @@
+aeq9g3
+defi
+disp az,
+var az1 az2 az3 az4 az5 az6 az7 az8 az9
+refc rx,ry,
+coor x,y,
+func = curlazx,curlazy,
+dord 1,
+node 9
+$cc double sigma,epsilon,fmu,fjz;
+mate sigma epsilon fmu fjz 5.96e7 8.8541878e-12 12.56637e-7 0.0
+ 
+shap
+az=
+az1 = rx*(rx-1.)/2*ry*(ry-1.)/2
+az5 = (1.-rx*rx)*ry*(ry-1.)/2
+az2 = rx*(1.+rx)/2*ry*(ry-1.)/2
+az8 = rx*(rx-1.)/2*(1.-ry*ry)
+az9 = (1.-rx*rx)*(1.-ry*ry)
+az6 = rx*(1.+rx)/2*(1.-ry*ry)
+az4 = rx*(rx-1.)/2*ry*(1.+ry)/2
+az7 = (1.-rx*rx)*ry*(1.+ry)/2
+az3 = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+tran
+x=
+x(1) = rx*(rx-1.)/2*ry*(ry-1.)/2
+x(5) = (1.-rx*rx)*ry*(ry-1.)/2
+x(2) = rx*(1.+rx)/2*ry*(ry-1.)/2
+x(8) = rx*(rx-1.)/2*(1.-ry*ry)
+x(9) = (1.-rx*rx)*(1.-ry*ry)
+x(6) = rx*(1.+rx)/2*(1.-ry*ry)
+x(4) = rx*(rx-1.)/2*ry*(1.+ry)/2
+x(7) = (1.-rx*rx)*ry*(1.+ry)/2
+x(3) = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+y=
+y(1) = rx*(rx-1.)/2*ry*(ry-1.)/2
+y(5) = (1.-rx*rx)*ry*(ry-1.)/2
+y(2) = rx*(1.+rx)/2*ry*(ry-1.)/2
+y(8) = rx*(rx-1.)/2*(1.-ry*ry)
+y(9) = (1.-rx*rx)*(1.-ry*ry)
+y(6) = rx*(1.+rx)/2*(1.-ry*ry)
+y(4) = rx*(rx-1.)/2*ry*(1.+ry)/2
+y(7) = (1.-rx*rx)*ry*(1.+ry)/2
+y(3) = rx*(1.+rx)/2*ry*(1.+ry)/2
+ 
+gaus = 9
+ 7.745966692e-001  7.745966692e-001  3.086419753e-001
+ 7.745966692e-001  0.000000000e+000  4.938271605e-001
+ 7.745966692e-001 -7.745966692e-001  3.086419753e-001
+ 0.000000000e+000  7.745966692e-001  4.938271605e-001
+ 0.000000000e+000  0.000000000e+000  7.901234568e-001
+ 0.000000000e+000 -7.745966692e-001  4.938271605e-001
+-7.745966692e-001  7.745966692e-001  3.086419753e-001
+-7.745966692e-001  0.000000000e+000  4.938271605e-001
+-7.745966692e-001 -7.745966692e-001  3.086419753e-001
+ 
+func
+$cc vol = 1.0;
+curlazx=+[az/y]
+
+curlazy=-[az/x]
+
+
+stif
+dist=+[curlazx;curlazx]*vol/fmu+[curlazy;curlazy]*vol/fmu
+
+
+ 
+load=+[az]*vol*fjz
+
+ 
+end
